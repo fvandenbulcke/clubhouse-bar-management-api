@@ -1,6 +1,7 @@
 {
   "extends": "airbnb-base",
   "rules": {
-    "linebreak-style": 0
+    "linebreak-style": 0,
+    "callback-return": ["error", { "allow": ["_id"] }]
   }
 }

@@ -13,7 +13,7 @@ app.use(cors());
 
 
 // Constants
-const PORT = 8080;
+const PORT = 8090;
 const HOST = '0.0.0.0';
 
 const swaggerDescription = YAML.load('./api/swagger/swagger.yaml');

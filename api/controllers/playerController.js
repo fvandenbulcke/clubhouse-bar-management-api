@@ -1,5 +1,12 @@
 import playerService from '../services/playerService';
 
+exports.getAll = function getAll(req, res) {
+  return playerService.getAll()
+    .then((result) => {
+      res.send(result);
+    });
+};
+
 exports.getById = function getById(req, res) {
   const playerId = req.swagger.params.player.value;
   return playerService.getById(playerId)
