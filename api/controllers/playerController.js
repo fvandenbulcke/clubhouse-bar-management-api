@@ -15,6 +15,14 @@ exports.getById = function getById(req, res) {
     });
 };
 
+exports.getBill = function getBill(req, res) {
+  const playerId = req.swagger.params.player.value;
+  return playerService.getBill(playerId)
+    .then((result) => {
+      res.send(result);
+    });
+};
+
 exports.create = function create(req, res) {
   return playerService.create(req.body)
     .then((result) => {

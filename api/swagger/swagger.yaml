@@ -84,6 +84,25 @@ paths:
             $ref: "#/definitions/ErrorResponse"
   /player/{player}/bill:
     x-swagger-router-controller: playerController
+    get:
+      description: Get player bill
+      operationId: getBill
+      parameters:
+        - in: path
+          name: player
+          required: true
+          type: string
+          minimum: 1
+          description: The player ID.
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/PlayerResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
     post:
       description: Add bill to a player
       operationId: updateBill

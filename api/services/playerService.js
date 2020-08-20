@@ -1,5 +1,6 @@
 import { ObjectId } from 'mongodb';
 import bcrypt from 'bcryptjs';
+import drinkService from './drinkService';
 import MongoPool from '../database/mongoClient';
 
 const defaultPassword = 'achvb';
@@ -80,4 +81,28 @@ exports.deleteBill = function deleteBill(playerId) {
     { _id: new ObjectId(playerId) },
     { $unset: { bill: null } },
   ).then(() => this.getById(playerId));
+};
+
+exports.getBill = function getBill(playerId) {
+  return Promise.all([
+    drinkService.getAll(),
+    this.getById(playerId),
+  ]).then((values) => {
+    const allDrinks = values[0];
+    const player = values[1];
+    
+    Object.keys(player.bill).forEach((billDate) => {
+      let label = '';
+      let amount = 0;
+      console.log(billDate);
+      Object.keys(player.bill[billDate]).forEach((drinkId) => {
+        console.log(drinkId);
+        const currentDrink = allDrinks.find((d) => d.id.toString() === drinkId.toString());
+        label += `${player.bill[billDate][drinkId]} ${currentDrink.label}, `;
+        amount += player.bill[billDate][drinkId] * currentDrink.price;
+      });
+      player.bill[billDate] = { label, amount };
+    });
+    return player;
+  });
 };
