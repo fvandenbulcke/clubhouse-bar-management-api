@@ -4,11 +4,10 @@
   "description": "clubhouse-bar-management-api",
   "author": "florian.vandenbulcke@ext.adeo.com",
   "main": "./api/server.js",
+  "type": "module",
   "scripts": {
-    "build": "babel api -d dist --copy-files",
-    "start": "npm run build & node ./dist/server.js",
-    "start-babel": "babel-node ./api/server.js",
-    "watch": "nodemon ./api/server.js --exec babel-node"
+    "start": "node ./api/server.js",
+    "watch": "nodemon ./api/server.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -17,14 +16,10 @@
     "express": "^4.17.1",
     "lodash": "^4.17.15",
     "mongodb": "^3.4.1",
-    "swagger-express-mw": "^0.7.0",
     "swagger-ui-express": "^4.1.2",
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-plugin-syntax-object-rest-spread": "^6.13.0",
-    "babel-preset-env": "^1.7.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.1",

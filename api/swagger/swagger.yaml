@@ -14,8 +14,7 @@ consumes:
 produces:
   - application/json
 paths:
-  /drinks:
-    x-swagger-router-controller: drinkController
+  /drink:
     get:
       description: Returns all the drinks existing in the clubhouse
       # used as the method name of the controller
@@ -31,8 +30,7 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
-  /players:
-    x-swagger-router-controller: playerController
+  /player:
     get:
       description: Get all players
       operationId: getAll
@@ -48,7 +46,6 @@ paths:
           schema:
             $ref: "#/definitions/ErrorResponse"
   /player/_create:
-    x-swagger-router-controller: playerController
     post:
       description: Register a player in database
       operationId: create
@@ -62,7 +59,6 @@ paths:
           schema:
             $ref: "#/definitions/ErrorResponse"
   /player/{player}:
-    x-swagger-router-controller: playerController
     get:
       description: Get a player by id
       operationId: getById
@@ -83,7 +79,6 @@ paths:
           schema:
             $ref: "#/definitions/ErrorResponse"
   /player/{player}/bill:
-    x-swagger-router-controller: playerController
     get:
       description: Get player bill
       operationId: getBill
@@ -123,7 +118,6 @@ paths:
           schema:
             $ref: "#/definitions/ErrorResponse"
   /player/{player}/password:
-    x-swagger-router-controller: playerController
     put:
       description: Update a player password
       operationId: updatePassword
@@ -144,7 +138,6 @@ paths:
           schema:
             $ref: "#/definitions/ErrorResponse"
   /player/{player}/drinks:
-    x-swagger-router-controller: playerController
     delete:
       description: Reset a player bill
       operationId: deleteBill
