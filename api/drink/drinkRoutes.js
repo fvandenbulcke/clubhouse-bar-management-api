@@ -11,4 +11,11 @@ drinkRoutes.get('/', function(req, res) {
     });
 });
 
+drinkRoutes.post('/', function(req, res) {
+  return drinkService.add(req.body)
+    .then((results) => {
+      res.send(results);
+    });
+});
+
 export { drinkRoutes }

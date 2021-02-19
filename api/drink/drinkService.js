@@ -1,9 +1,10 @@
 import MongoPool from '../database/mongoClient.cjs';
 
+const drinksCollection = () => MongoPool.getInstance().collection('drink');
+
 export default {
   getAll() {
-    const db = MongoPool.getInstance();
-    return db.collection('drink').find().toArray()
+    return drinksCollection().find().toArray()
       .then((results) => {
         return results.map((d) => {
           const transformed = {
@@ -14,5 +15,9 @@ export default {
           return transformed;
         });
       });
-  }
+  },
+  add(drink) {
+    return drinksCollection().insert(drink)
+      .then(({ops}) => ops);
+  },
 }
